@@ -298,7 +298,7 @@ export default function OnboardingPage() {
       {/* ── Footer ── */}
       <footer className="py-8 text-center text-xs"
         style={{ borderTop: "1px solid var(--airbnb-divider)", color: "var(--airbnb-gray-light)" }}>
-        © 2026 Team RAN · 오늘도 함께라서 든든합니다 ⚡
+        © 2026 Team RAN · 오늘도 함께라서 든든합니다 ⚡ · v1.1
       </footer>
     </main>
   );
