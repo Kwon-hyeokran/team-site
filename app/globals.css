@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* Airbnb Design Tokens */
+:root {
+  /* Backgrounds */
+  --airbnb-white:      #FFFFFF;
+  --airbnb-warm-bg:    #F7F7F7;
+  --airbnb-warm-light: #F7F6F2;
+  --airbnb-warm-cream: #F5F1EA;
+
+  /* Text */
+  --airbnb-charcoal:   #222222;
+  --airbnb-gray:       #717171;
+  --airbnb-gray-light: #B0B0B0;
+  --airbnb-divider:    #DDDDDD;
+
+  /* Brand */
+  --airbnb-coral:      #FF385C;
+  --airbnb-rausch-1:   #E61E4D;
+  --airbnb-rausch-2:   #E31C5F;
+  --airbnb-rausch-3:   #D70466;
+
+  /* Radius */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   24px;
+  --radius-full: 9999px;
+
+  --background: var(--airbnb-white);
+  --foreground: var(--airbnb-charcoal);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta), "Helvetica Neue", Arial, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Airbnb frosted glass surface */
+.airbnb-frosted {
+  background: rgba(255, 255, 255, 0.925);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Airbnb card */
+.airbnb-card {
+  background: var(--airbnb-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.airbnb-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0,0,0,0.04);
+  transform: translateY(-2px);
+}
+
+/* Airbnb primary button (coral) */
+.airbnb-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(to right, var(--airbnb-rausch-1), var(--airbnb-rausch-2), var(--airbnb-rausch-3));
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(230, 30, 77, 0.35);
+  transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  text-decoration: none;
+}
+.airbnb-btn-primary:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 6px 20px rgba(230, 30, 77, 0.45);
+  transform: translateY(-1px);
+}
+.airbnb-btn-primary:active {
+  filter: brightness(0.97);
+  transform: translateY(0);
+}
