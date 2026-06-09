@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ConsultationModal from "./components/ConsultationModal";
 
 const QUESTS = [
   {
@@ -125,6 +126,7 @@ const TOTAL_XP = QUESTS.reduce((s, q) => s + q.xp, 0);
 export default function OnboardingPage() {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [expanded, setExpanded] = useState<string | null>("q1");
+  const [showModal, setShowModal] = useState(false);
 
   function toggle(itemId: string) {
     setChecked((prev) => ({ ...prev, [itemId]: !prev[itemId] }));
@@ -149,6 +151,8 @@ export default function OnboardingPage() {
   }
 
   return (
+    <>
+    {showModal && <ConsultationModal onClose={() => setShowModal(false)} />}
     <main style={{ background: "var(--airbnb-warm-bg)", color: "var(--airbnb-charcoal)", minHeight: "100vh" }}>
 
       {/* ── Header ── */}
@@ -298,8 +302,19 @@ export default function OnboardingPage() {
       {/* ── Footer ── */}
       <footer className="py-8 text-center text-xs"
         style={{ borderTop: "1px solid var(--airbnb-divider)", color: "var(--airbnb-gray-light)" }}>
-        © 2026 Team RAN · 오늘도 함께라서 든든합니다 ⚡ · v1.1
+          © 2026 Team RAN · 오늘도 함께라서 든든합니다 ⚡
       </footer>
+
+      {/* 문의하기 FAB */}
+      <button
+        onClick={() => setShowModal(true)}
+        className="airbnb-btn-primary fixed bottom-8 right-8 z-40 shadow-2xl"
+        style={{ gap: "8px" }}
+      >
+        ✉️ 문의하기
+      </button>
+
     </main>
+    </>
   );
 }
