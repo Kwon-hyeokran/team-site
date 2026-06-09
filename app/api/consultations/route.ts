@@ -13,6 +13,31 @@ async function ensureTable() {
   `;
 }
 
+export async function GET(request: Request) {
+  try {
+    const pw = request.headers.get("x-admin-password");
+    if (!pw || pw !== process.env.ADMIN_PASSWORD) {
+      return NextResponse.json({ error: "인증 실패" }, { status: 401 });
+    }
+
+    await ensureTable();
+
+    const { rows } = await sql`
+      SELECT id, name, email, message, created_at
+      FROM consultations
+      ORDER BY created_at DESC
+    `;
+
+    return NextResponse.json({ consultations: rows });
+  } catch (err) {
+    console.error("[consultations GET]", err);
+    return NextResponse.json(
+      { error: "서버 오류가 발생했습니다." },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
